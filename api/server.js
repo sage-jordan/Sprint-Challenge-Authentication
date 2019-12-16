@@ -10,15 +10,15 @@ const server = express();
 
 var session = require('express-session');
 const sessionConfig = {
-    name: 'notsession', // default is connect.sid
-    secret: 'nobody tosses a dwarf!',
+    name: 'monkey',
+    secret: 'Keep it secret, keep it safe!',
     cookie: {
-        maxAge: 1 * 24 * 60 * 60 * 1000,
-        secure: true,
-        ttpOnly: true, // only set cookies over https. Server will not send back a cookie over http.
-    }, // 1 day in milliseconds
+        maxAge: 1000 * 60,
+        secure: false,
+        httpOnly: true
+    },
     resave: false,
-    saveUninitialized: false,
+    saveUninitialized: false
 };
 // configure express-session middleware
 server.use(session(sessionConfig));

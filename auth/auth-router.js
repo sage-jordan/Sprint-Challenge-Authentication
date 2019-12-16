@@ -37,9 +37,7 @@ router.post('/login', (req, res) => {
     .then(user => {
       // console.log("User: ", user);
       if(user && bcrypt.compareSync(password, user.password)){
-        // console.log(req.session);
           req.session.user = user;
-          // console.log(req.session.user);
           res.status(200).json({ message: `Welcome ${user.username}!`, session: req.session });
       } else {
           res.status(401).json({ message: `Invalid Cridentials` });
