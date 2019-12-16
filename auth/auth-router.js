@@ -14,17 +14,13 @@ router.post('/register', (req, res) => {
   const hash = bcrypt.hashSync(user.password, 12);
   user.password = hash;
 
-  if(user.username && user.password){
-    add(user)
-      .then(saved => {
-        res.status(200).json({saved})
-      })
-      .catch(err => {
-        res.status(500).json({err});
-      }); 
-  } else {
-    res.status(404).json({ message: `Please provide a valid Username and Password to register` });
-  };
+  add(user)
+    .then(saved => {
+      res.status(200).json({saved})
+    })
+    .catch(err => {
+      res.status(500).json({err});
+    }); 
 });
 
 router.post('/login', (req, res) => {
