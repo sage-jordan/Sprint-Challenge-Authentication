@@ -8,6 +8,21 @@ const jokesRouter = require('../jokes/jokes-router.js');
 
 const server = express();
 
+var session = require('express-session');
+const sessionConfig = {
+    name: 'monkey',
+    secret: 'Keep it secret, keep it safe!',
+    cookie: {
+        maxAge: 1000 * 60,
+        secure: false,
+        httpOnly: true
+    },
+    resave: false,
+    saveUninitialized: false
+};
+// configure express-session middleware
+server.use(session(sessionConfig));
+
 server.use(helmet());
 server.use(cors());
 server.use(express.json());
